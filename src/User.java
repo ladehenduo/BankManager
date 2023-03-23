@@ -13,5 +13,6 @@ public class User {
     public Date loanTime; // 借款时间
     public Date repaymentDate;  //还款日期
     public double rate; // 贷款年利率
-
+    // test idea git
+    public int tes;
 }
