@@ -1,8 +1,8 @@
 package Public;
 
-import Cilent.CurrentUser;
+import java.io.Serializable;
 
-public class Account {
+public class Account implements Serializable {
     private String user;
     private String password;
     private String ciphertext;

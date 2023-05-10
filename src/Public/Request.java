@@ -1,10 +1,15 @@
 package Public;
 
-public class Request {
+import java.io.Serializable;
+
+public class Request implements Serializable {
     public static int SAVE = 1;
     public static int WITHDRAW = 2;
     public static int ENROLL = 3;
     public static int TRANSFER = 4;
+    public static int ACC = 5;
+    public static int NOT_FOUND = 6;
+    public static int LOGIN = 7;
 
     public int r_status = -1;
     Account account = null;

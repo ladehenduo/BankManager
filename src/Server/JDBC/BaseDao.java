@@ -75,7 +75,7 @@ public class BaseDao {
         ptmt.setString(2, account);
         ptmt.execute();
     }
-//    public static void main(String[] args){
+//    public static void main(String[] args) throws InterruptedException {
 //        BaseDao baseDao = new BaseDao();
 //        Public.Account account = new Public.Account();
 //        account.setUser("1234");
@@ -86,11 +86,14 @@ public class BaseDao {
 //        account.setIdnumber("12346549798");
 //        account.setEmail("16549874212");
 //        account.setCiphertext("dasdqw");
-//        try {
-////            baseDao.addAccount(account);
-//            baseDao.Withdraw(5.101, "1234");
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+//        Thread.sleep(10000);
+////        try {
+//////            baseDao.addAccount(account);
+////            baseDao.Withdraw(5.101, "1234");
+////        } catch (SQLException e) {
+////            throw new RuntimeException(e);
+////        } catch (BalanceNotEnoughException e) {
+////            throw new RuntimeException(e);
+////        }
 //    }
 }

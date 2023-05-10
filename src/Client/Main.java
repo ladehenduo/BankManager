@@ -1,8 +1,9 @@
-package Cilent;
+package Client;
 
 import Public.Account;
+import Public.Request;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
@@ -10,11 +11,11 @@ public class Main {
     //数据库
     //IO
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String tp = null;
-        int op = -1;
-        double money;
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in); //标准输入流，与用户交互
+        String tp = null;   // 临时字符串，临时存储读入的字符串
+        int op = -1;    // 操作类型，与menu对应
+        double money;   // 操作金额，根据场景起不同作用
 
         while(CurrentUser.isLog == false) { // 如果没有登录就只能选择登录或注册
             UI.showLoginMenu();
@@ -29,6 +30,10 @@ public class Main {
                     }
                     System.out.print("请输入密码："); password = scanner.next();
                     try {
+                        Account account = new Account();
+                        account.setUser(user);
+                        account.setPassword(password);
+                        UDPClientTools.sendRequest(Request.LOGIN, account);
                         CurrentUser.Login(user, password);
                     } catch (IOException e) {
                         e.printStackTrace();

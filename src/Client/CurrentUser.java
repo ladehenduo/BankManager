@@ -1,4 +1,4 @@
-package Cilent;
+package Client;
 
 import Public.Account;
 import Server.JDBC.BaseDao;
