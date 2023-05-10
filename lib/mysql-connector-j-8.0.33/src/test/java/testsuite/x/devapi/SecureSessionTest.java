@@ -489,7 +489,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
                 testSession = this.fact.getSession(props);
                 assertSecureSession(testSession);
-                assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Account is cached by now.
+                assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Public.Account is cached by now.
                 assertUser("testAuthMechNative", testSession);
                 testSession.close();
             }
@@ -520,7 +520,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
                     testSession = this.fact.getSession(props);
                     assertSecureSession(testSession);
-                    assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Account is cached by now.
+                    assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Public.Account is cached by now.
                     assertUser("testAuthMechSha256", testSession);
                     testSession.close();
                 }
@@ -552,7 +552,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
                     testSession = this.fact.getSession(props);
                     assertSecureSession(testSession);
-                    assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Account is cached by now.
+                    assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Public.Account is cached by now.
                     assertUser("testAuthMechCachingSha2", testSession);
                     testSession.close();
                 }
@@ -591,7 +591,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
                 testSession = this.fact.getSession(props);
                 assertNonSecureSession(testSession);
-                assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Account is cached by now.
+                assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Public.Account is cached by now.
                 assertUser("testAuthMechSha256", testSession);
                 testSession.close();
             }
@@ -603,7 +603,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
                 testSession = this.fact.getSession(props);
                 assertNonSecureSession(testSession);
-                assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Account is cached by now.
+                assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Public.Account is cached by now.
                 assertUser("testAuthMechCachingSha2", testSession);
                 testSession.close();
             }
@@ -632,7 +632,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
                 testSession = this.fact.getSession(props);
                 assertNonSecureSession(testSession);
-                assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Account is cached by now.
+                assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Public.Account is cached by now.
                 assertUser("testAuthMechNative", testSession);
                 testSession.close();
             }
@@ -659,7 +659,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
                     testSession = this.fact.getSession(props);
                     assertNonSecureSession(testSession);
-                    assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Account is cached by now.
+                    assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Public.Account is cached by now.
                     assertUser("testAuthMechSha256", testSession);
                     testSession.close();
                 }
@@ -687,7 +687,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
                     testSession = this.fact.getSession(props);
                     assertNonSecureSession(testSession);
-                    assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Account is cached by now.
+                    assertEquals(AuthMech.SHA256_MEMORY, getAuthMech.apply(testSession)); // Public.Account is cached by now.
                     assertUser("testAuthMechCachingSha2", testSession);
                     testSession.close();
                 }

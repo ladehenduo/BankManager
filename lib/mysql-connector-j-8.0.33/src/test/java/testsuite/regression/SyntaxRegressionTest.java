@@ -1880,7 +1880,7 @@ public class SyntaxRegressionTest extends BaseTestCase {
             this.stmt.execute("GRANT SELECT ON *.* TO '" + user + "'@'%'");
 
             if (accLock.equals("ACCOUNT LOCK")) {
-                assertThrows("Test case: " + accLock + ",", SQLException.class, "Access denied for user '" + user + "'@'.*'\\. Account is locked\\.",
+                assertThrows("Test case: " + accLock + ",", SQLException.class, "Access denied for user '" + user + "'@'.*'\\. Public.Account is locked\\.",
                         new Callable<Void>() {
                             public Void call() throws Exception {
                                 getConnectionWithProps(props);
@@ -1896,7 +1896,7 @@ public class SyntaxRegressionTest extends BaseTestCase {
             this.stmt.execute("ALTER USER '" + user + "'@'%' ACCOUNT LOCK");
             assertTrue(testConn1.createStatement().executeQuery("SELECT 1").next(), "Test case: " + accLock + ","); // Previous authentication still valid.
 
-            assertThrows("Test case: " + accLock + ",", SQLException.class, "Access denied for user '" + user + "'@'.*'\\. Account is locked\\.",
+            assertThrows("Test case: " + accLock + ",", SQLException.class, "Access denied for user '" + user + "'@'.*'\\. Public.Account is locked\\.",
                     new Callable<Void>() {
                         public Void call() throws Exception {
                             ((JdbcConnection) testConn1).changeUser(user, pwd);

@@ -1,6 +1,6 @@
 package Server.JDBC;
 
-import Server.Account;
+import Public.Account;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class BaseDao {
     static {
         conn = DBCNUnit.getConnection();
     }
-    public void addAccount(Account account) throws SQLException {
+    public static void addAccount(Account account) throws SQLException {
         String sql = "INSERT INTO account values(?,?,?)";
         PreparedStatement ptmt = conn.prepareStatement(sql);
         ptmt.setString(1, account.getUser());
@@ -29,9 +29,9 @@ public class BaseDao {
         ptmt1.execute();
     }
 
-    public List<Account> queryAllAccount() throws SQLException {
+    public static List<Account> queryAllAccount() throws SQLException {
         Statement stmt = conn.createStatement();
-        ResultSet resultSet = stmt.executeQuery("select * from account");
+        ResultSet resultSet = stmt.executeQuery("select * from account, userinfo where account.account=userinfo.account");
         Account account = null;
         List<Account> list = new ArrayList<>();
         while(resultSet.next()){
@@ -39,11 +39,16 @@ public class BaseDao {
             account.setUser(resultSet.getString("account"));
             account.setPassword(resultSet.getString("password"));
             account.setCiphertext(resultSet.getString("ciphertext"));
+            account.setName(resultSet.getString("name"));
+            account.setSex(resultSet.getString("sex"));
+            account.setIdnumber(resultSet.getString("idnumber"));
+            account.setEmail(resultSet.getString("email"));
+            account.setBalance(resultSet.getDouble("balance"));
             list.add(account);
         }
         return list;
     }
-    public void Withdraw(Double money, String account) throws SQLException, BalanceNotEnoughException {
+    public static void Withdraw(Double money, String account) throws SQLException, BalanceNotEnoughException {
         Double balance;
         Statement stmt = conn.createStatement();
         String sql1 = "SELECT * FROM userinfo WHERE account=?";
@@ -72,7 +77,7 @@ public class BaseDao {
     }
 //    public static void main(String[] args){
 //        BaseDao baseDao = new BaseDao();
-//        Account account = new Account();
+//        Public.Account account = new Public.Account();
 //        account.setUser("1234");
 //        account.setPassword("132465");
 //        account.setSex("男");

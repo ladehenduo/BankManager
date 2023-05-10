@@ -4172,7 +4172,7 @@ public class StatementsTest extends BaseTestCase {
                 "PREPARE rsProdQueryPS FROM 'TABLE rsProdQuery'", "DEALLOCATE PREPARE rsProdQueryPS",
                 // Compound Statement Syntax/Condition Handling:
                 "SIGNAL SQLSTATE '01000'", "RESIGNAL", "GET DIAGNOSTICS @n = NUMBER",
-                // Database Administration Statements/Account Management Statements:
+                // Database Administration Statements/Public.Account Management Statements:
                 "CREATE USER rsProdQueryUser", "ALTER USER rsProdQueryUser", "RENAME USER rsProdQueryUser to rsProdQueryUserNew",
                 "GRANT SELECT ON rsProdQueryDb.* TO rsProdQueryUser", "REVOKE ALL ON *.* FROM rsProdQueryUser", "DROP USER rsProdQuery",
                 // Database Administration Statements/Component, Plugin, and Loadable Function Statements:
@@ -4247,7 +4247,7 @@ public class StatementsTest extends BaseTestCase {
                 "WITH cte1 AS (TABLE roSafeTest) UPDATE roSafeTest SET c = c + 1", "WITH cte1 AS (TABLE roSafeTest) DELETE FROM roSafeTest",
                 // Replication Statements:
                 "CHANGE REPLICATION SOURCE TO SOURCE_DELAY=0", "RESET REPLICA",
-                // Database Administration Statements/Account Management Statements:
+                // Database Administration Statements/Public.Account Management Statements:
                 "CREATE USER roSafeTestUser", "ALTER USER roSafeTestUser", "RENAME USER roSafeTestUser to roSafeTestUserNew",
                 "GRANT SELECT ON roSafeTestDb.* TO roSafeTestUser", "REVOKE ALL ON *.* FROM roSafeTestUser", "DROP USER roSafeTest",
                 // Database Administration Statements/Table Maintenance Statements:

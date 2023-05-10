@@ -1,4 +1,6 @@
-package Server;
+package Public;
+
+import Cilent.CurrentUser;
 
 public class Account {
     private String user;
@@ -11,6 +13,26 @@ public class Account {
     private String email;
     private Double balance;
 
+    public static void showInfo(Account account) {
+        System.out.println("姓名：" + account.getName());
+        System.out.println("性别：" + account.getSex());
+        System.out.println("身份证号：" + account.getIdnumber());
+        System.out.println("邮箱：" + account.getEmail());
+        System.out.println("账号：" + account.getUser());
+        System.out.println("余额：" + account.getBalance());
+    }
+    public Account() {
+    }
+    public Account(Account account) {
+        this.user = account.getUser();
+        this.password = account.getPassword();
+        this.ciphertext = account.getCiphertext();
+        this.name = account.getName();
+        this.sex = account.getSex();
+        this.idnumber = account.getIdnumber();
+        this.email = account.getEmail();
+        this.balance = account.getBalance();
+    }
     public String getName() {
         return name;
     }

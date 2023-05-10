@@ -201,7 +201,7 @@ public class ClientPreparedQuery extends AbstractQuery implements PreparedQuery 
             }
 
             //
-            // Account for static part of values clause
+            // Public.Account for static part of values clause
             // This is a little naive, because the ?s will be replaced but it gives us some padding, and is less housekeeping to ignore them. We're looking
             // for a "fuzzy" value here anyway
             //
