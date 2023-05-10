@@ -1,3 +1,5 @@
+import Server.JDBC.BalanceNotEnoughException;
+
 import java.util.Date;
 
 public class User {

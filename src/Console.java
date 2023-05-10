@@ -1,3 +1,5 @@
+import Server.JDBC.BalanceNotEnoughException;
+
 import java.util.List;
 
 public class Console {

@@ -1,7 +1,6 @@
 package Server.JDBC;
 
 import Server.Account;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,22 +43,49 @@ public class BaseDao {
         }
         return list;
     }
-    public void Withdraw(double money, String account) throws SQLException {
-        String sql = "UPDATE account SET balance=balance-? WHICH account=?";
+    public void Withdraw(Double money, String account) throws SQLException, BalanceNotEnoughException {
+        Double balance;
+        Statement stmt = conn.createStatement();
+        String sql1 = "SELECT * FROM userinfo WHERE account=?";
+        ResultSet rs = stmt.executeQuery(sql1);
+        balance = rs.getDouble("balance");
+        if(balance < money) {
+            System.out.println("余额不足");
+            throw new BalanceNotEnoughException(balance - money);
+        }
+        else {
+            String sql = "UPDATE userinfo SET balance=balance-? WHERE account=?";
+            PreparedStatement ptmt = conn.prepareStatement(sql);
+            ptmt.setDouble(1, money);
+            ptmt.setString(2, account);
+            ptmt.execute();
+        }
+
+    }
+
+    public void saveMoney(Double money, String account) throws SQLException {
+        String sql = "UPDATE userinfo SET balance=balance+? WHERE account=?";
         PreparedStatement ptmt = conn.prepareStatement(sql);
         ptmt.setDouble(1, money);
         ptmt.setString(2, account);
         ptmt.execute();
     }
-
 //    public static void main(String[] args){
+//        BaseDao baseDao = new BaseDao();
+//        Account account = new Account();
+//        account.setUser("1234");
+//        account.setPassword("132465");
+//        account.setSex("男");
+//        account.setName("李昊");
+//        account.setBalance(20.0);
+//        account.setIdnumber("12346549798");
+//        account.setEmail("16549874212");
+//        account.setCiphertext("dasdqw");
 //        try {
-//            List<Account> list = queryAllAccount();
-//            for(int i = 0; i < list.size(); i++) {
-//                System.out.println(list.get(i).getUser());
-//            }
+////            baseDao.addAccount(account);
+//            baseDao.Withdraw(5.101, "1234");
 //        } catch (SQLException e) {
-//            e.printStackTrace();
+//            throw new RuntimeException(e);
 //        }
 //    }
 }

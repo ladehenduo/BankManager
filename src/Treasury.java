@@ -1,3 +1,5 @@
+import Server.JDBC.BalanceNotEnoughException;
+
 public class Treasury {
     private static double balance; // 金库余额
     private static int accountNumber; // 使用该金库的账户数量，不包括管理员，只算往里面存款的人
