@@ -33,12 +33,15 @@ public class BaseDao {
 
             list.add(account);
         }
-        System.out.println(list);
         return list;
     }
+
 //    public static void main(String[] args){
 //        try {
-//            addAccount("1234", "1234", "1234");
+//            List<Account> list = queryAllAccount();
+//            for(int i = 0; i < list.size(); i++) {
+//                System.out.println(list.get(i).getUser());
+//            }
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
