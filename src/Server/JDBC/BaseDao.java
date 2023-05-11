@@ -29,6 +29,22 @@ public class BaseDao {
         ptmt1.execute();
     }
 
+    public static Account queryAccount(String user) {
+        List<Account> list = null;
+        Account account = null;
+        try {
+            list = queryAllAccount();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        for(int i = 0; i < list.size(); i++) {
+            if(list.get(i).getUser().equals(user)) {
+                account = new Account(list.get(i));
+                break;
+            }
+        }
+        return account;
+    }
     public static List<Account> queryAllAccount() throws SQLException {
         Statement stmt = conn.createStatement();
         ResultSet resultSet = stmt.executeQuery("select * from account, userinfo where account.account=userinfo.account");
@@ -49,51 +65,27 @@ public class BaseDao {
         return list;
     }
     public static void Withdraw(Double money, String account) throws SQLException, BalanceNotEnoughException {
-        Double balance;
-        Statement stmt = conn.createStatement();
-        String sql1 = "SELECT * FROM userinfo WHERE account=?";
-        ResultSet rs = stmt.executeQuery(sql1);
-        balance = rs.getDouble("balance");
-        if(balance < money) {
-            System.out.println("余额不足");
-            throw new BalanceNotEnoughException(balance - money);
-        }
-        else {
-            String sql = "UPDATE userinfo SET balance=balance-? WHERE account=?";
-            PreparedStatement ptmt = conn.prepareStatement(sql);
-            ptmt.setDouble(1, money);
-            ptmt.setString(2, account);
-            ptmt.execute();
-        }
-
+        String sql = "UPDATE userinfo SET balance=balance-? WHERE account=?";
+        PreparedStatement ptmt = conn.prepareStatement(sql);
+        ptmt.setDouble(1, money);
+        ptmt.setString(2, account);
+        ptmt.execute();
     }
 
-    public void saveMoney(Double money, String account) throws SQLException {
+    public static void saveMoney(Double money, String account) throws SQLException {
         String sql = "UPDATE userinfo SET balance=balance+? WHERE account=?";
         PreparedStatement ptmt = conn.prepareStatement(sql);
         ptmt.setDouble(1, money);
         ptmt.setString(2, account);
         ptmt.execute();
     }
-//    public static void main(String[] args) throws InterruptedException {
-//        BaseDao baseDao = new BaseDao();
-//        Public.Account account = new Public.Account();
-//        account.setUser("1234");
-//        account.setPassword("132465");
-//        account.setSex("男");
-//        account.setName("李昊");
-//        account.setBalance(20.0);
-//        account.setIdnumber("12346549798");
-//        account.setEmail("16549874212");
-//        account.setCiphertext("dasdqw");
-//        Thread.sleep(10000);
-////        try {
-//////            baseDao.addAccount(account);
-////            baseDao.Withdraw(5.101, "1234");
-////        } catch (SQLException e) {
-////            throw new RuntimeException(e);
-////        } catch (BalanceNotEnoughException e) {
-////            throw new RuntimeException(e);
-////        }
-//    }
+    public static void main(String[] args) throws InterruptedException {
+//        try {
+//            saveMoney(100.0, "123");
+//            System.out.println("成功！");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+    }
 }

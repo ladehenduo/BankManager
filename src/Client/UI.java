@@ -30,8 +30,7 @@ public class UI {
         System.out.print("请输入密码："); stp = scanner.next();
         account.setPassword(stp);
         account.setBalance(0.0);
-        System.out.println("注册成功！");
-
+        account.setCiphertext("default");
         return account;
     }
     public static void showMainMenu() {
