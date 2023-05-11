@@ -27,7 +27,7 @@ public class UDPClientTools {
     }
     public static void transMoney(String obuser, Double money) throws IOException { //向obuser账户存money，从CurrentUser取money
         if(money > 0) {
-            if(CurrentUser.account.getBalance() > money) {
+            if(CurrentUser.account.getBalance() >= money) {
                 Account account = new Account();
                 account.setUser(obuser);
                 account.setBalance(money);
@@ -36,7 +36,7 @@ public class UDPClientTools {
                 try {
                     status = receiveRequest();  //接收回应
                 } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("UDPClientTools.transMoney:" + e.getMessage());
                 }
                 if(status == Request.TRANSFER_OK) {
                     withdrawMoney(money);
@@ -53,7 +53,7 @@ public class UDPClientTools {
     }
     public static void withdrawMoney(Double money) throws IOException {
         if(money > 0) {
-            if(CurrentUser.account.getBalance() > money) {
+            if(CurrentUser.account.getBalance() >= money) {
                 Account account = new Account(CurrentUser.account);
                 account.setBalance(money); // 此处可能要改
                 sendRequest(Request.WITHDRAW, account);
@@ -117,7 +117,7 @@ public class UDPClientTools {
         Request request = (Request) objectInputStream.readObject();
         if(request.r_status == Request.ACC) {
             CurrentUser.account = new Account(request.getAccount());
-            System.out.println("成功！");
+//            System.out.println("成功！");
             return Request.ACC;
         }
         return request.r_status;

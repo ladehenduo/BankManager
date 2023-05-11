@@ -71,11 +71,11 @@ public class UDPServerTools {
             }
         } else if(request.r_status == Request.TRANSFER) {
             try {
-                BaseDao.saveMoney(tp.getBalance(), tp.getUser());
                 Account account = BaseDao.queryAccount(tp.getUser());
                 if(account != null) {
+                    BaseDao.saveMoney(tp.getBalance(), tp.getUser());
                     request.setAccount(BaseDao.queryAccount(tp.getUser()));
-                    request.r_status = Request.ACC;
+                    request.r_status = Request.TRANSFER_OK;
                 } else {
                     request.r_status = Request.TRANSFER_FAIL;
                 }

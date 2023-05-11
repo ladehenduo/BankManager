@@ -43,7 +43,7 @@ public class Main {
                 Account account = null;
                 int status = -10;
                 while(status != Request.ACC) {
-                    if(status != -10) System.out.println("注册失败！");
+                    if(status != -10) System.out.println("注册失败！请更换账号重试");
                     account = new Account(UI.showRegisterView());
                     UDPClientTools.sendRequest(Request.ENROLL, account);
                     try {
