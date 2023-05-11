@@ -31,6 +31,7 @@ public class Main {
         ExecutorService executorService = Executors.newCachedThreadPool();
         Integer lock = 1;
         System.out.println("服务器开始运行...");
+
         while(true) {
             Request request = UDPServerTools.receiveRequest();
             requests.add(request);

@@ -15,7 +15,7 @@ public class UDPClientTools {
 
     static {
         try {
-            inetAddress = InetAddress.getByName("localhost");
+            inetAddress = InetAddress.getByName("192.168.31.51");
         } catch (UnknownHostException e) {
             System.out.println("服务器ip地址获取失败（localhost）");
         }
